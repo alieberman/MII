@@ -1,0 +1,70 @@
+
+	<div class="contentWrap row-fluid">
+      <div class="mainWrap">
+		<button ng-click="downloadCSV()" type="button" class="exportbtn btn pull-right">Export All</button>
+		<a href="index.html#/new" class="btn exportbtn pull-right" ng-show="user.email != 'Guest'"><i class="icon-plus-sign"></i>Add Feed</a>
+		<a href="index.html#/changes" class="btn exportbtn pull-right">View All Changes</a>
+        <form class="form-search">
+          <div class="input-append">
+            <input type="text" placeholder="Search Feeds" class="search-query" ng-change="filter()" ng-model="query">
+            <button type="submit" class="btn">Search</button>
+          </div>
+			<span class="dropdown">View: <select ng-model="feedActivity" ng-change="filterFeeds()">
+				<option>All Feeds</option>
+				<option>Active Feeds</option>
+				<option>Inactive Feeds</option>
+				</select>
+			</span>
+        </form>
+		<div infinite-scroll='loadMore()' infinite-scroll-disabled='keepGoing'>
+        <table id="landingTable" class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th class="IS_ACTIVE sortable">Active? <i class="icon-chevron-down icon-white" ng-click="sort('IS_ACTIVE')"></i></th>
+              <th class="INTERFACE_NAME sortable">Interface <i class="icon-chevron-down icon-white" ng-click="sort('INTERFACE_NAME')"></i></th>
+              <th class="ISTRATEGY sortable">Istrategy <i class="icon-chevron-down icon-white" ng-click="sort('ISTRATEGY')"></i></th>
+			  <th class="IL_FILE_NAME sortable">IL File Name <i class="icon-chevron-down icon-white" ng-click="sort('IL_FILE_NAME')"></i></th>
+			  <th class="MESSAGE_TYPE_ sortable">Message Type <i class="icon-chevron-down icon-white" ng-click="sort('MESSAGE_TYPE_')"></i></th>
+			  <th class="SITE_CONTACT sortable">Site Contact(s) <i class="icon-chevron-down icon-white" ng-click="sort('SITE_CONTACT')"></i></th>
+			  <th class="SYSTEM_CONTACTS sortable">SAP Contact(s)<i class="icon-chevron-down icon-white" ng-click="sort('SYSTEM_CONTACTS')"></i></th>
+              <th class="INTERFACE_OWNER sortable">Main Contact <i class="icon-chevron-down icon-white" ng-click="sort('INTERFACE_OWNER')"></i></th>
+              <th class="actions sortable">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="feed in feedList | filter:query | orderBy:sortOrder" ng-click="feedShow(feed.ID)" class="custom-cursor">
+              <td class="status {{feed.IS_ACTIVE}}">
+                {{feed.IS_ACTIVE}}
+              </td>
+              <td class="interface">
+                <a href="index.html#/feeds/{{feed.ID}}">{{feed.INTERFACE_NAME}}</a>
+              </td>
+              <td class="Istrategy">
+				{{feed.ISTRATEGY}}
+              </td>
+			  <td class="fileName">
+				{{feed.IL_FILE_NAME | limitTo:25}} <a ng-show='feed.IL_FILE_NAME.length > 25' href="#" tooltip="{{feed.IL_FILE_NAME}}" ng-click="do(); $event.preventDefault()">...</a> 
+              </td>
+		      <td class="messageType">
+                {{feed.MESSAGE_TYPE_ | limitTo:25}} <a ng-show='feed.MESSAGE_TYPE_.length > 25' href="#" tooltip="{{feed.MESSAGE_TYPE_}}" ng-click="do(); $event.preventDefault()">...</a>
+              </td>
+              <td class="mainContant">
+                {{feed.SITE_CONTACT | limitTo:25}} <a ng-show='feed.SITE_CONTACT.length > 25' href="#" tooltip="{{feed.SITE_CONTACT}}" ng-click="do(); $event.preventDefault()">...</a>
+              </td>
+			  <td class="mainContant">
+                {{feed.SYSTEM_CONTACTS | limitTo:25}} <a ng-show='feed.SYSTEM_CONTACTS.length > 25' href="#" tooltip="{{feed.SYSTEM_CONTACTS}}" ng-click="do(); $event.preventDefault()">...</a>
+              </td>
+              <td class="mainContant">
+                {{feed.INTERFACE_OWNER | limitTo:25}} <a ng-show='feed.INTERFACE_OWNER.length > 25' href="#" tooltip="{{feed.INTERFACE_OWNER}}" ng-click="do(); $event.preventDefault()">...</a>
+              </td>
+              <td class="actions">
+                <a href="index.html#/feeds/{{feed.ID}}/edit">Edit</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+		</div><!-- /infinite-scroll -->
+      </div>
+    </div>
+	
+	 

@@ -1,0 +1,104 @@
+<div class="contentWrap row-fluid">
+  <div class="mainWrap">
+    <div id="monitoringContent">
+	  <div class="graph-title"><h2 class="text-center">Total Transfers</h2></div>
+      <div class="graphs clearfix">
+			<div id="chart_container2">
+			        <div id="y_axis2"></div>
+			        <div id="chart2"></div>
+					<div class="custom-x-axis">
+						<ul>
+							<li class="axis-label">Received</li>
+						</ul>
+					</div>
+					<div class="custom-x-axis">
+						<ul>
+							<li class="axis-label">Processed</li>
+						</ul>
+					</div>
+					<div class="custom-x-axis">
+						<ul>
+							<li class="axis-label">Failed</li>
+						</ul>
+					</div>
+			</div>
+      </div>
+	  <div class="graph-stats">
+		<a class="btn btn-inverse" href="#/monitoring/transfers">View All Transfers <i class="icon-arrow-right icon-white"></i></a>
+	  </div>
+	  <div class="graph-title"><h2 class="text-center">Average Number of Daily Transfers</h2></div>
+      <div class="graphs clearfix">
+			<div id="chart_container">
+			        <div id="y_axis1"></div>
+			        <div id="chart1"></div>
+					<div id="legend"></div>
+					<div ng-show="show" id="noGraph"></div>
+					<div ng-show="show" id="chartNoShow"></div>
+			</div>
+      </div>
+	  <div class="graph-stats">
+			<table id="averagesTable" class="table">
+		        <thead>
+		          <tr>
+		            <th colspan="2">Successful Transfers</th>
+		            <th colspan="2">Failed Transfers</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>Today:</td>
+		            <td class="text-right">{{successfulTransfers}}</td>
+		            <td>Today: </td>
+		            <td class="text-right">{{failedTransfers}}</td>
+		          </tr>
+		          <tr>
+		            <td>Avg:</td>
+		            <td class="text-right">{{dailyTransferAvgAll}}</td>
+		            <td>Avg: </td>
+		            <td class="text-right">{{dailyTransferAvgFailed}}</td>
+		          </tr>
+		        </tbody>
+		      </table>
+		<a class="btn btn-inverse" href="#/monitoring/transfers">View All Transfers <i class="icon-arrow-right icon-white"></i></a>
+	  </div>
+	  <div class="graph-title"><h2 class="text-center">Average Daily Transfers (In Bytes)</h2></div>
+      <div class="graphs clearfix">
+			<div id="chart_container">
+			        <div id="y_axis"></div>
+			        <div id="chart"></div>
+					<div ng-show="show" id="noGraph"></div>
+			</div>
+      </div>
+	  <div class="graph-stats">
+			<table id="averagesTable" class="table">
+		        <thead>
+		          <tr>
+		            <th colspan="2">Daily Volume</th>
+		            <th colspan="2">Monthly Volume</th>
+		            <th colspan="2">Yearly Volume</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>Today:</td>
+		            <td class="text-right">{{sumDailyBytes}} {{dailyFileSuffix}}</td>
+		            <td>This Month:</td>
+		            <td class="text-right">{{sumMonthlyBytes}} {{monthlyFileSuffix}}</td>
+		            <td>This Year:</td>
+		            <td class="text-right">{{sumYearlyBytes}} {{yearlyFileSuffix}}</td>
+		          </tr>
+		          <tr>
+		            <td>Avg:</td>
+		            <td class="text-right">{{formatDailyAvg}} {{formatDailyAvgSuffix}}</td>
+		            <td>Avg:</td>
+		            <td class="text-right">{{formatMonthlyAvg}} {{formatMonthlyAvgSuffix}}</td>
+		            <td>Avg:</td>
+		            <td class="text-right">{{formatYearlyAvg}} {{formatYearlyAvgSuffix}}</td>
+		          </tr>
+		        </tbody>
+		    </table>
+		<a class="btn btn-inverse" href="#/monitoring/transfers">View All Transfers <i class="icon-arrow-right icon-white"></i></a>
+	  </div>
+    </div>
+  </div>
+</div>

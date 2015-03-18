@@ -1,0 +1,75 @@
+	<div class="contentWrap row-fluid">
+      <div class="mainWrap clearfix">
+	    <ol class="breadcrumb">
+		  <li><a href="index.html#/">Home</a></li>
+		  <li>/&nbsp<a href="index.html#/feeds/{{params.id}}">Feed Details</a></li>
+		  <li class="active">/ Transfers</li>
+		</ol>
+        <div class="page-header">
+          <h1>Interface:{{singleFeed.INTERFACE_NAME}} IStrategy:{{singleFeed.ISTRATEGY}}</h1>
+          <p class="lead">Active (Y/N)?: <span class="{{singleFeed.IS_ACTIVE}}">{{singleFeed.IS_ACTIVE}}</span>
+			<a href="index.html#/monitoring/transfers" class="btn exportbtn pull-right"><b>View All Transfers</b></a>
+		  </p>
+		  <div class="quarter-column">
+		  Transfer Summary:
+		  </div>
+		  <div class="quarter-column">
+    		All Transfers <span class="badge badge-inverse">{{dailyTransferNumber}}</span>
+		  </div>
+		  <div class="quarter-column">
+   		  Successful Transfers <span class="badge badge-inverse">{{dailySuccessTransferNumber}}</span>
+		  </div>
+		  <div class="quarter-column">
+   		  Failed Transfers <span class="badge badge-inverse">{{dailyFailedTransferNumber}}</span>
+		  </div>
+        </div>
+        <div class="tabbale-wrap clearfix">
+          <div class="tabbable tabs-left pull-left">
+            <ul id="inventorySubnavTab" class="nav nav-tabs">
+				<li><a href="index.html#/feeds/{{singleFeed.ID}}">Feed Details</a></li>
+                <li class="active"><a href="index.html#/transfers/{{singleFeed.ID}}">Transfers</a></li>
+                <li><a href="index.html#/comments/{{singleFeed.ID}}">Comments</a></li>
+                <li><a href="index.html#/changeLog/{{singleFeed.ID}}">Change Log</a></li>
+            </ul>
+          </div>
+          <div class="tabbable-content pull-left">
+            <div id="transferContent" class="tab-content">
+			  <table id="changeLogTable" class="table table-striped table-bordered">
+	            <thead>
+	              <tr>
+	                <th class="EVENTTIMESTAMP sortable">Date <i class="icon-chevron-down icon-white" ng-click="sort('EVENTTIMESTAMP')"></i></th>
+					<th class="ISTRAT sortable">IStrategy <i class="icon-chevron-down icon-white" ng-click="sort('ISTRAT')"></i></th>
+					<th class="ORIGINALFILENAME sortable">Filename <i class="icon-chevron-down icon-white" ng-click="sort('ORIGINALFILENAME')"></i></th>
+					<th class="FILESIZE sortable">File Size <i class="icon-chevron-down icon-white" ng-click="sort('FILESIZE')"></i></th>
+					<th class="DIRECTION sortable">Direction <i class="icon-chevron-down icon-white" ng-click="sort('DIRECTION')"></i></th>
+					<th class="SUCCESS sortable">Success/Failed <i class="icon-chevron-down icon-white" ng-click="sort('SUCCESS')"></i></th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr ng-repeat="transfer in transferList | orderBy:sortOrder">
+	                <td>
+		              {{transfer.EVENTTIMESTAMP | date:'medium'}}
+		            </td>
+					<td>
+		              {{transfer.ISTRAT}}
+		            </td>
+					<td>
+		              {{transfer.ORIGINALFILENAME}}
+		            </td>
+					<td>
+		              {{transfer.FILESIZE}}
+		            </td>
+					<td>
+		              {{transfer.DIRECTION}}
+		            </td>
+		            <td>
+		              {{transfer.SUCCESS}}
+		            </td>
+	              </tr>
+	            </tbody>
+	          </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

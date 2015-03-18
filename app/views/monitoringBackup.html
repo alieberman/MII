@@ -1,0 +1,59 @@
+<div class="contentWrap row-fluid">
+  <div class="mainWrap">
+    <div id="monitoringContent">
+      <table id="averagesTable" class="table">
+        <thead>
+          <tr>
+            <th colspan="2">Daily Volume</th>
+            <th colspan="2">Monthly Volume</th>
+            <th colspan="2">Yearly Volume</th>
+            <th colspan="2"><a href="#/monitoring/transfers">Successful Transfers</a></th>
+            <th colspan="2"><a href="#/monitoring/transfers">Failed Transfers</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Today:</td>
+            <td class="text-right">{{sumDailyBytes}} {{dailyFileSuffix}}</td>
+            <td>This Month:</td>
+            <td class="text-right">{{sumMonthlyBytes}} {{monthlyFileSuffix}}</td>
+            <td>This Year:</td>
+            <td class="text-right">{{sumYearlyBytes}} {{yearlyFileSuffix}}</td>
+            <td>Today:</td>
+            <td class="text-right">{{successfulTransfers}}</td>
+            <td>Today: </td>
+            <td class="text-right">{{failedTransfers}}</td>
+          </tr>
+          <tr>
+            <td>Avg:</td>
+            <td class="text-right">{{formatDailyAvg}} {{formatDailyAvgSuffix}}</td>
+            <td>Avg:</td>
+            <td class="text-right">{{formatMonthlyAvg}} {{formatMonthlyAvgSuffix}}</td>
+            <td>Avg:</td>
+            <td class="text-right">{{formatYearlyAvg}} {{formatYearlyAvgSuffix}}</td>
+            <td>Avg:</td>
+            <td class="text-right">{{dailyTransferAvgAll}}</td>
+            <td>Avg: </td>
+            <td class="text-right">0</td>
+          </tr>
+        </tbody>
+      </table>
+	  <div><h2 class="text-center">Average Number of Daily Transfers</h2></div>
+      <div class="graphs clearfix">
+			<div id="chart_container">
+			        <div id="y_axis1"></div>
+			        <div id="chart1"></div>
+					<div ng-show="show" id="noGraph"></div>
+			</div>
+      </div>
+	  <div><h2 class="text-center">Average Daily Transfers (In Bytes)</h2></div>
+      <div class="graphs clearfix">
+			<div id="chart_container">
+			        <div id="y_axis"></div>
+			        <div id="chart"></div>
+					<div ng-show="show" id="noGraph"></div>
+			</div>
+      </div>
+    </div>
+  </div>
+</div>

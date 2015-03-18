@@ -1,0 +1,552 @@
+
+    <div class="contentWrap row-fluid">
+      <div class="mainWrap clearfix">
+		<ol class="breadcrumb">
+		  <li><a href="index.html#/">Home</a></li>
+		  <li class="active">/ Feed Details</li>
+		 </ol>
+        <div class="page-header">
+          <h1>Interface:{{singleFeed.INTERFACE_NAME}} IStrategy:{{singleFeed.ISTRATEGY}}</h1>
+          <p class="lead">Active (Y/N)? <span class="{{singleFeed.IS_ACTIVE}}">{{singleFeed.IS_ACTIVE}}</span></p>
+        </div>
+		<p ng-controller="EventShowCtrl">Last Change Datetime: <span>{{lastEvent.CREATED_AT | date:'medium'}}</span></p>
+        <p ng-controller="EventShowCtrl">Last Change Made By: <span><a href="index.html#/users/{{lastEvent.USER_NAME}}">{{lastEvent.USER_NAME}}</a></span><a class="cancelBtn btn btn-inverse" href="index.html#/"><i class="icon-arrow-left icon-white"></i>Back</a></p>
+        <hr />
+        <div class="tabbale-wrap clearfix">
+          <div class="tabbable tabs-left pull-left">
+            <ul id="inventorySubnavTab" class="nav nav-tabs">
+                <li class="active"><a href="index.html#/feeds/{{singleFeed.ID}}">Feed Details</a></li>
+                <li><a href="index.html#/transfers/{{singleFeed.ID}}">Transfers</a></li>
+                <li><a href="index.html#/comments/{{singleFeed.ID}}">Comments</a></li>
+                <li><a href="index.html#/changeLog/{{singleFeed.ID}}">Change Log</a></li>
+            </ul>
+          </div>
+          <div class="tabbable-content pull-left">
+            <div id="feedContent" class="tab-content">
+              <div class="feedDetailColLeft span6">
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Interface Name:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.INTERFACE_NAME}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Istrategy:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.ISTRATEGY}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Active (Y/N):
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IS_ACTIVE}}
+                  </div>
+                </div>
+                <div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    In/Out:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TD_IN_OUT}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    System Contact(s):
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SYSTEM_CONTACTS}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Site Contact:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SITE_CONTACT}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Interface Owner:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.INTERFACE_OWNER}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    File Name Written to Shuttle:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.FILE_NAME_WRITTEN_TO_SHUTTLE}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Group:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.GROUP_}}
+                  </div>
+                </div>
+				<div class="feedDetailRow highlighted">
+                  <div class="detailLeft">
+                    Encryption Needed:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IS_ENCRYPTION_NEEDED}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Interface Type:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TD_INTERF_TYPE}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    wM Interface:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IS_WM_INTERFACE}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PCI:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.PCI}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PII III?:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IS_PII_III}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PII III Specific Data:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.PII_III_SPECIFIC_DATA}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Safe Harbor:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IS_SAFE_HARBOR}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Safe Harbor Specific Data:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SAFE_HARBOR_SPECIFIC_DATA}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Interface Data Classification:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.INTERFACE_DATA_CLASSIF}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Data Classification:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.DATA_CLASSIF}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    To or From Safe Harbor Location:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IS_TO_OR_FROM_SAFE_HARBOR}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Meets Which Policies and Standards:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.MEETS_WHICH_POLICIES}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Has Policy or Standards Issue:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.HAS_POLICY_OR_STANDARDS_ISSUE}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Security Exception ID:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SECURITY_EXCEPTION_ID}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Date Audited:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.LAST_DATE_AUDITED}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    IL File Name:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IL_FILE_NAME}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Acknowledgement IL File Name:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.ACKNOWLEDGEMENT_IL_FILE_NAME}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    EART Entry:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.EART_ENTRY}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Interface Description:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.INTERFACE_DESCRIPTION}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Feed Description:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.FEED_DESCRIPTION}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    BU, Segment, Entity:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.BU_SEGMENT_ENTITY}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Implementation Pattern: 
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IMPLEMENTATION_PATTERN}}
+                  </div>
+                </div>             
+              </div>
+              <div class="feedDetailColRight span6"> 
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Source Application Name:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SOURCE_APPLICATION_NAME}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Source Data Format:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SOURCE_DATA_FORMAT}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Source Location:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SOURCE_LOCATION}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Target Application Name:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TARGET_APPLICATION_NAME}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Target Data Format:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TARGET_DATA_FORMAT}}
+                  </div>
+                </div>           
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Target Location:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TARGET_LOCATION}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    A2A or B2B:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.A2A_OR_B2B}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Message Type:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.MESSAGE_TYPE_}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    IDoc Type:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IDOC_TYPE}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    IDoc Extension:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.IDOC_EXTENSION}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transformation Complexity:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TRANSFORMATION_COMPLEXITY}}
+                  </div>
+                </div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transactions Per:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TRANSACTIONS_PER}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transfer Type:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TRANSFER_TYPE}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    SFTP:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SFTP}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    FTP:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.FTP}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    HTTP:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.HTTP}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    HTTPS:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.HTTPS}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    SAP ALE API:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SAP_ALE_API}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Delivery Mechanism:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.DELIVERY_MECHANISM}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Maximum Message Size:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.MAXIMUM_MESSAGE_SIZE}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Peak Message Volume:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.PEAK_MESSAGE_VOLUME}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Frequency:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.FREQUENCY}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transfer Deadline:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.TRANSFER_DEADLINE}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Outbound: Server Host:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.OUTBOUND_SERVER_HOST}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Outbound: Platform/Responsible Group:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.OUTBOUND_RESPONSIBLE_GROUP}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    SSN:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SSN}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Salary:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.SALARY}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PGP:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.PGP}}
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Comments:
+                  </div>
+                  <div class="detailRight">
+                    <a href="index.html#/comments/{{singleFeed.ID}}">Comments</a>
+                  </div>
+                </div>
+				<!--<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Change Date:
+                  </div>
+                  <div class="detailRight" ng-controller="EventShowCtrl">
+                    {{lastEvent.CREATED_AT}}
+                  </div>
+                </div>-->
+				<div class="feedDetailRow" >
+                  <div class="detailLeft">
+                    Last Change Comment:
+                  </div>
+                  <div class="detailRight" ng-show="singleFeed.LAST_CHANGE_COMMENT.length != 0">
+                    {{singleFeed.LAST_CHANGE_COMMENT}}
+                  </div>
+			   	  <div class="detailRight" ng-controller="CommentIndexCtrl" ng-show="commentList.length > 0">
+                    {{commentList[0].COMMENT_FEED}}
+                  </div>
+                </div>
+				<!--<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Change By:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.LAST_CHANGE_BY}}
+                  </div>
+                </div>-->
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Created At:
+                  </div>
+                  <div class="detailRight">
+                    {{singleFeed.CREATED_AT | date:'medium'}}
+                  </div>
+                </div>
+              </div><!--/FeedDetailColumnRight-->
+              <div class="userControls text-center" ng-show="user.email != 'Guest'">
+                <a href="index.html#/feeds/{{singleFeed.ID}}/edit" class="btn btn-large btn-success">Edit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

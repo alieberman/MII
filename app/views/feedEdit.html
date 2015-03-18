@@ -1,0 +1,846 @@
+
+    <div class="contentWrap row-fluid">
+      <div class="mainWrap clearfix">
+		<ol class="breadcrumb">
+		  <li><a href="index.html#/">Home</a></li>
+		  <li>/&nbsp<a href="index.html#/feeds/{{params.id}}">Feed Details</a></li>
+		  <li class="active">/ Edit Feed</li>
+		 </ol>
+        <div class="page-header">
+          <h1>Interface:{{singleFeed.INTERFACE_NAME}} IStrategy:{{singleFeed.ISTRATEGY}}</h1>
+          <p class="lead">Active (Y/N)?: <span class="{{singleFeed.IS_ACTIVE}}">{{singleFeed.IS_ACTIVE}}</span></p>
+        </div>
+		<p ng-controller="EventShowCtrl">Last Change Datetime: <span>{{lastEvent.CREATED_AT | date:'medium'}}</span></p>
+        <p ng-controller="EventShowCtrl">Last Change Made By: <span><a href="index.html#/users/{{lastEvent.USER_NAME}}">{{lastEvent.USER_NAME}}</a></span><a class="cancelBtn btn btn-inverse" href="index.html#/feeds/{{singleFeed.ID}}"><i class="icon-arrow-left icon-white"></i>Cancel</a></p>
+        <hr />
+        <div class="tabbale-wrap clearfix">
+          <div class="tabbable tabs-left pull-left">
+            <ul id="inventorySubnavTab" class="nav nav-tabs">
+                <li class="active"><a href="index.html#/feeds/{{singleFeed.ID}}">Feed Details</a></li>
+                <li><a href="index.html#/transfers/{{singleFeed.ID}}">Transfers</a></li>
+                <li><a href="index.html#/comments/{{singleFeed.ID}}">Comments</a></li>
+                <li><a href="index.html#/changeLog/{{singleFeed.ID}}">Change Log</a></li>
+            </ul>
+          </div>
+		  <div class="tabbable-content pull-left">
+			<form name="feedForm" novalidate>
+				<div ng-show="editFeedSuccess && feedForm.$pristine && !noChange && !editFeedFailure" class="alert alert-success">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Successfully Saved!</strong> 
+		        </div>
+				<div ng-show="editFeedFailure && feedForm.$pristine" class="alert alert-error">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Error Saving Content. Please Contact Aaron Lieberman at aaron@bigcompass.com.</strong> 
+		        </div>
+				<div ng-show="noChange && feedForm.$pristine && !editFeedFailure" class="alert alert-error">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Please Make Changes Before Saving!</strong> 
+		        </div>
+            <div id="feedContent" class="tab-content">
+              <div class="feedDetailColLeft span6">
+					<div ng-show="feedForm.interfaceName.$error.maxlength" class="alert alert-error">
+		          		<strong>Maximum 58 Characters.</strong> 
+		        	</div>
+					<div ng-show="feedForm.interfaceName.$error.required && submitted" class="alert alert-error">
+		          		<strong>Interface Name Cannot Be Blank!</strong> 
+		        	</div>
+              	  <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Interface Name:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="interfaceName" ng-model="singleFeed.INTERFACE_NAME" ng-maxlength="58" placeholder="Interface Name" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.istrategy.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 60 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.istrategy.$error.required && submitted" class="alert alert-error">
+	          		<strong>IStrategy Cannot Be Blank!</strong> 
+	        	</div>
+                <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Istrategy:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="istrategy" ng-model="singleFeed.ISTRATEGY" ng-maxlength="60" placeholder="Istrategy" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.active.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 7 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.active.$error.required && submitted" class="alert alert-error">
+	          		<strong>Active Cannot Be Blank!</strong> 
+	        	</div>
+                <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Active:
+                  </div>
+                  <div class="detailRight">
+					<select name="active" ng-model="singleFeed.IS_ACTIVE" ng-maxlength="7" required>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+					<div ng-show="feedForm.inOut.$error.maxlength" class="alert alert-error">
+		          		<strong>Maximum 1 Character.</strong> 
+		        	</div>
+					<div ng-show="feedForm.inOut.$error.required && submitted" class="alert alert-error">
+		          		<strong>In/Out Cannot Be Blank!</strong> 
+		        	</div>
+                <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    In/Out:
+                  </div>
+                  <div class="detailRight">
+                    <select type="text" name="inOut" ng-model="singleFeed.TD_IN_OUT" ng-maxlength="1" required> 
+						<option>I</option>
+						<option>O</option>
+					</select>	
+                  </div>
+                </div>
+				<div ng-show="feedForm.systemContacts.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 400 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.systemContacts.$error.required && submitted" class="alert alert-error">
+	          		<strong>System Contact(s) Cannot Be Blank!</strong> 
+	        	</div>
+				<div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    System Contact(s):
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="systemContacts" ng-model="singleFeed.SYSTEM_CONTACTS" ng-maxlength="400" placeholder="System Contact(s)" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.siteContact.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 400 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.siteContact.$error.required && submitted" class="alert alert-error">
+	          		<strong>Site Contact Cannot Be Blank!</strong> 
+	        	</div>
+				<div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Site Contact:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="siteContact" ng-model="singleFeed.SITE_CONTACT" ng-maxlength="400" placeholder="Site Contact" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.interfaceOwner.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 75 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.interfaceOwner.$error.required && submitted" class="alert alert-error">
+	          		<strong>Interface Owner Cannot Be Blank!</strong> 
+	        	</div>
+				<div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Interface Owner:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="interfaceOwner" ng-model="singleFeed.INTERFACE_OWNER" ng-maxlength="75" placeholder="Interface Owner" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.fileNameWritten.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 350 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.fileNameWritten.$error.required && submitted" class="alert alert-error">
+	          		<strong>File Name Written To Shuttle Cannot Be Blank!</strong> 
+	        	</div>
+                <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    File Name Written To Shuttle:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="fileNameWritten" ng-model="singleFeed.FILE_NAME_WRITTEN_TO_SHUTTLE" ng-maxlength="350" placeholder="File Name Written To Shuttle" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.group.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 48 Characters.</strong> 
+	        	</div>
+				<div ng-show="feedForm.group.$error.required && submitted" class="alert alert-error">
+	          		<strong>Group Cannot Be Blank!</strong> 
+	        	</div>
+                <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Group:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="group" ng-model="singleFeed.GROUP_" ng-maxlength="48" placeholder="Group" required>
+                  </div>
+                </div>
+				<div ng-show="feedForm.encryptionNeeded.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+				<div ng-show="feedForm.encryptionNeeded.$error.required && submitted" class="alert alert-error">
+	          		<strong>Encryption Needed Cannot Be Blank!</strong> 
+	        	</div>
+                <div class="feedDetailRow noBackground">
+                  <div class="detailLeft highlighted">
+                    Encryption Needed:
+                  </div>
+                  <div class="detailRight">
+					<select name="encryptionNeeded" ng-model="singleFeed.IS_ENCRYPTION_NEEDED" ng-maxlength="1" required>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+					<div ng-show="feedForm.interfaceType.$error.maxlength" class="alert alert-error">
+		          		<strong>Maximum 6 Characters.</strong> 
+		        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Interface Type:
+                  </div>
+                  <div class="detailRight">
+					<select name="interfaceType" ng-model="singleFeed.TD_INTERF_TYPE" ng-maxlength="6">
+						<option></option>
+						<option>EDI</option>
+						<option>FI</option>
+						<option>HI</option>
+						<option>HR</option>
+						<option>HR; FI</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.wmInterface.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    wM Interface:
+                  </div>
+                  <div class="detailRight">
+					<select name="wmInterface" ng-model="singleFeed.IS_WM_INTERFACE" ng-maxlength="1">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.pci.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 2 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PCI:
+                  </div>
+                  <div class="detailRight">
+					<select name="pci" ng-model="singleFeed.PCI" ng-maxlength="2">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.isPII.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 2 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PII III?:
+                  </div>
+                  <div class="detailRight">
+					<select name="isPII" ng-model="singleFeed.IS_PII_III" ng-maxlength="2">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.pii.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 43 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PII III Specific Data:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="pii" ng-model="singleFeed.PII_III_SPECIFIC_DATA" ng-maxlength="43" placeholder="PII III Specific Data">
+                  </div>
+                </div>
+				<div ng-show="feedForm.safeHarbor.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 2 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Safe Harbor:
+                  </div>
+                  <div class="detailRight">
+					<select name="safeHarbor" ng-model="singleFeed.IS_SAFE_HARBOR" ng-maxlength="2">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.safeHarborSpecific.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 48 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Safe Harbor Specific Data:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="safeHarborSpecific" ng-model="singleFeed.SAFE_HARBOR_SPECIFIC_DATA" ng-maxlength="48" placeholder="Safe Harbor Specific Data">
+                  </div>
+                </div>
+				<div ng-show="feedForm.interfaceDataClass.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 48 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Interface Data Classification:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="interfaceDataClass" ng-model="singleFeed.INTERFACE_DATA_CLASSIF" ng-maxlength="48" placeholder="Interface Data Classification">
+                  </div>
+                </div>
+				<div ng-show="feedForm.dataClass.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 10 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Data Classification:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="dataClass" ng-model="singleFeed.DATA_CLASSIF" ng-maxlength="10" placeholder="Data Classification">
+                  </div>
+                </div>
+				<div ng-show="feedForm.toOrFrom.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 2 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    To or From Safe Harbor Location:
+                  </div>
+                  <div class="detailRight">
+					<select name="toOrFrom" ng-model="singleFeed.IS_TO_OR_FROM_SAFE_HARBOR" ng-maxlength="2">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.meetsWhich.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 3 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Meets Which Policies and Standards:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="meetsWhich" ng-model="singleFeed.MEETS_WHICH_POLICIES" ng-maxlength="3" placeholder="Meets Which Policies and Standards">
+                  </div>
+                </div>
+				<div ng-show="feedForm.hasPolicy.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 2 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Has Policy or Standards Issue:
+                  </div>
+                  <div class="detailRight">
+					<select name="hasPolicy" ng-model="singleFeed.HAS_POLICY_OR_STANDARDS_ISSUE" ng-maxlength="2">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.securityException.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 10 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Security Exception ID:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="securityException" ng-model="singleFeed.SECURITY_EXCEPTION_ID" ng-maxlength="10" placeholder="Security Exception ID">
+                  </div>
+                </div>	
+				<div ng-show="feedForm.lastDateAudited.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Character.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Date Audited:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="lastDateAudited" ng-model="singleFeed.LAST_DATE_AUDITED" ng-maxlength="20" placeholder="Last Date Audited">
+                  </div>
+                </div>
+				<div ng-show="feedForm.ilFile.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 350 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    IL File Name:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="ilFile" ng-model="singleFeed.IL_FILE_NAME" ng-maxlength="350" placeholder="IL File Name">
+                  </div>
+                </div>
+				<div ng-show="feedForm.acknowledgementIL.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 50 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Acknowledgement IL File Name:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="acknowledgementIL" ng-model="singleFeed.ACKNOWLEDGEMENT_IL_FILE_NAME" ng-maxlength="50" placeholder="Acknowledgement IL File Name">
+                  </div>
+                </div>
+				<div ng-show="feedForm.eartEntry.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 3 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    EART Entry:
+                  </div>
+                  <div class="detailRight">
+					<select name="eartEntry" ng-model="singleFeed.EART_ENTRY" ng-maxlength="3">
+						<option></option>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.interfaceDescription.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 225 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Interface Description:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="interfaceDescription" ng-model="singleFeed.INTERFACE_DESCRIPTION" ng-maxlength="225" placeholder="Interface Description">
+                  </div>
+                </div>
+				<div ng-show="feedForm.feedDescription.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 600 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Feed Description:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="feedDescription" ng-model="singleFeed.FEED_DESCRIPTION" ng-maxlength="600" placeholder="Feed Description">
+                  </div>
+                </div>
+				<div ng-show="feedForm.buSegment.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 175 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    BU, Segment, Entity:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="buSegment" ng-model="singleFeed.BU_SEGMENT_ENTITY" ng-maxlength="175" placeholder="BU, Segment, Entity">
+                  </div>
+                </div>	
+              </div>
+              <div class="feedDetailColRight span6">
+				<div ng-show="feedForm.implementationPattern.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 100 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Implementation Pattern: 
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="implementationPattern" ng-model="singleFeed.IMPLEMENTATION_PATTERN" ng-maxlength="100" placeholder="Implementation Pattern">
+                  </div>
+                </div>
+				<div ng-show="feedForm.sourceApplication.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 150 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Source Application Name:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="sourceApplication" ng-model="singleFeed.SOURCE_APPLICATION_NAME" ng-maxlength="150" placeholder="Source Application Name">
+                  </div>
+                </div>
+				<div ng-show="feedForm.sourceData.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 125 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Source Data Format:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="sourceData" ng-model="singleFeed.SOURCE_DATA_FORMAT" ng-maxlength="125" placeholder="Source Data Format">
+                  </div>
+                </div>
+				<div ng-show="feedForm.sourceLocation.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 25 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Source Location:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="sourceLocation" ng-model="singleFeed.SOURCE_LOCATION" ng-maxlength="25" placeholder="Source Location">
+                  </div>
+                </div>
+				<div ng-show="feedForm.targetApplication.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 35 Characters.</strong> 
+	        	</div> 
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Target Application Name:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="targetApplication" ng-model="singleFeed.TARGET_APPLICATION_NAME" ng-maxlength="35" placeholder="Target Application Name">
+                  </div>
+                </div>
+				<div ng-show="feedForm.targetData.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 60 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Target Data Format:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="targetData" ng-model="singleFeed.TARGET_DATA_FORMAT" ng-maxlength="60" placeholder="Target Data Format">
+                  </div>
+                </div>  
+				<div ng-show="feedForm.targetLocation.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 25 Characters.</strong> 
+	        	</div>         
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Target Location:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="targetLocation" ng-model="singleFeed.TARGET_LOCATION" ng-maxlength="25" placeholder="Target Location">
+                  </div>
+                </div>
+				<div ng-show="feedForm.a2a.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    A2A or B2B:
+                  </div>
+                  <div class="detailRight">
+					<select name="a2a" ng-model="singleFeed.A2A_OR_B2B" ng-maxlength="20">
+						<option></option>
+						<option>A2A</option>
+						<option>B2B</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.messageType.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1000 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Message Type:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="messageType" ng-model="singleFeed.MESSAGE_TYPE_" ng-maxlength="1000" placeholder="Message Type">
+                  </div>
+                </div>
+				<div ng-show="feedForm.idocType.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 40 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    IDoc Type:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="idocType" ng-model="singleFeed.IDOC_TYPE" ng-maxlength="40" placeholder="IDoc Type">
+                  </div>
+                </div>
+				<div ng-show="feedForm.idocExtension.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    IDoc Extension:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="idocExtension" ng-model="singleFeed.IDOC_EXTENSION" ng-maxlength="20" placeholder="IDoc Extension">
+                  </div>
+                </div>
+				<div ng-show="feedForm.transformationComplexity.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 6 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transformation Complexity:
+                  </div>
+                  <div class="detailRight">
+					<select name="transformationComplexity" ng-model="singleFeed.TRANSFORMATION_COMPLEXITY" ng-maxlength="6">
+						<option></option>
+						<option>Low</option>
+						<option>Medium</option>
+						<option>High</option>
+					</select>	
+                  </div>
+                </div>
+				<div ng-show="feedForm.transactionsPer.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 50 Characters.</strong> 
+	        	</div>
+                <div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transactions Per:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="transactionsPer" ng-model="singleFeed.TRANSACTIONS_PER" ng-maxlength="50" placeholder="Transactions Per">
+                  </div>
+                </div>
+				<div ng-show="feedForm.transferType.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 9 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transfer Type:
+                  </div>
+                  <div class="detailRight">
+					<select name="transferType" ng-model="singleFeed.TRANSFER_TYPE" ng-maxlength="9">
+						<option></option>
+						<option>Batch</option>
+						<option>Real Time</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.sftp.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    SFTP:
+                  </div>
+                  <div class="detailRight">
+					<select name="sftp" ng-model="singleFeed.SFTP" ng-maxlength="1">
+						<option></option>
+						<option>X</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.ftp.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    FTP:
+                  </div>
+                  <div class="detailRight">
+					<select name="ftp" ng-model="singleFeed.FTP" ng-maxlength="1">
+						<option></option>
+						<option>X</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.http.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    HTTP:
+                  </div>
+                  <div class="detailRight">
+					<select name="http" ng-model="singleFeed.HTTP" ng-maxlength="1">
+						<option></option>
+						<option>X</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.https.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    HTTPS:
+                  </div>
+                  <div class="detailRight">
+					<select name="https" ng-model="singleFeed.HTTPS" ng-maxlength="1">
+						<option></option>
+						<option>X</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.sapAle.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 1 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    SAP ALE API:
+                  </div>
+                  <div class="detailRight">
+					<select name="sapAle" ng-model="singleFeed.SAP_ALE_API" ng-maxlength="1">
+						<option></option>
+						<option>X</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.deliveryMechanism.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 65 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Delivery Mechanism:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="deliveryMechanism" ng-model="singleFeed.DELIVERY_MECHANISM" ng-maxlength="65" placeholder="Delivery Mechanism">
+                  </div>
+                </div>
+				<div ng-show="feedForm.maxMessage.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 115 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Maximum Message Size:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="maxMessage" ng-model="singleFeed.MAXIMUM_MESSAGE_SIZE" ng-maxlength="115" placeholder="Maximum Message Size">
+                  </div>
+                </div>
+				<div ng-show="feedForm.peakMessage.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 175 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Peak Message Volume:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="peakMessage" ng-model="singleFeed.PEAK_MESSAGE_VOLUME" ng-maxlength="175" placeholder="Peak Message Volume">
+                  </div>
+                </div>
+				<div ng-show="feedForm.frequency.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Frequency:
+                  </div>
+                  <div class="detailRight">
+					<select name="frequency" ng-model="singleFeed.FREQUENCY" ng-maxlength="11">
+						<option></option>
+						<option>Ad Hoc</option>
+						<option>Hourly</option>
+						<option>Daily</option>
+						<option>Bi-Weekly</option>
+						<option>2 Weeks</option>
+						<option>Monthly</option>
+						<option>Quarterly</option>
+						<option>Semi Yearly</option>
+						<option>Yearly</option>
+					</select>
+                  </div>
+                </div>
+				<div ng-show="feedForm.transferDeadline.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 100 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Transfer Deadline:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="transferDeadline" ng-model="singleFeed.TRANSFER_DEADLINE" ng-maxlength="100" placeholder="Transfer Deadline">
+                  </div>
+                </div>
+				<div ng-show="feedForm.outboundServer.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 350 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Outbound: Server Host:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="outboundServer" ng-model="singleFeed.OUTBOUND_SERVER_HOST" ng-maxlength="350" placeholder="Outbound: Server Host">
+                  </div>
+                </div>
+				<div ng-show="feedForm.outboundResponsible.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 110 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Outbound: Platform/Responsible Group:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="outboundResponsible" ng-model="singleFeed.OUTBOUND_RESPONSIBLE_GROUP" ng-maxlength="110" placeholder="Outbound: Platform/Responsible Group">
+                  </div>
+                </div>
+				<div ng-show="feedForm.ssn.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    SSN:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="ssn" ng-model="singleFeed.SSN" ng-maxlength="20" placeholder="SSN">
+                  </div>
+                </div>
+				<div ng-show="feedForm.salary.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Character.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Salary:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="salary" ng-model="singleFeed.SALARY" ng-maxlength="20" placeholder="Salary">
+                  </div>
+                </div>
+				<div ng-show="feedForm.pgp.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 20 Characters.</strong> 
+	        	</div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    PGP:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" name="pgp" ng-model="singleFeed.PGP" ng-maxlength="20" placeholder="PGP">
+                  </div>
+                </div>
+				<!--<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Comments:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" ng-model="singleFeed.COMMENTS">
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Change Date:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" ng-model="singleFeed.LAST_CHANGE_DATE">
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Change Comment:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" ng-model="singleFeed.LAST_CHANGE_COMMENT">
+                  </div>
+                </div>
+				<div class="feedDetailRow">
+                  <div class="detailLeft">
+                    Last Change By:
+                  </div>
+                  <div class="detailRight">
+					<input type="text" ng-model="singleFeed.LAST_CHANGE_BY">
+                  </div>
+                </div>-->
+              </div><!--/FeedDetailColumnRight-->
+			  <div class="userControls text-center">
+                <button ng-click="save()" class="btn btn-large btn-success" ng-show="user.email != 'Guest'">Save</button>
+              </div>
+            </div>
+			</form>
+          </div>
+        </div>
+      </div>
+    </div>

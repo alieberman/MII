@@ -1,0 +1,577 @@
+/*
+Company:  
+File:   main.css - This contains all the main styles for the website.
+Docs:   File is based on html5boilerplate and YUI3 Fonts CSS.
+      Learn more:
+      http://html5boilerplate.com/docs/css/
+      http://yuilibrary.com/yui/docs/cssfonts/
+
+All the styles are separated into the following groups:
+HTML, Body - for the html and body tags
+Layout - styles that define the layout of the site
+Common Text Styles - Styles for text
+Default Headings - headings like h1, h2, etc
+Default Lists - unordered and ordered lists
+Nav - navigation bar
+Forms - html forms
+Default Links - links
+Media Queries - media queries
+Non-Semantic Helper Classes - helper styles
+Print Styles - default print styles
+*/
+
+/* @group HTML, Body */
+html {
+  text-shadow: none;
+}
+body {
+  background: #fff;
+}
+body.blue {
+  background: #0c75c8;
+}
+/* @end */
+
+/* Global */
+.table {
+  font-size: 12px
+}
+
+.table th, .table td {
+  text-align: center;
+}
+
+.table th {
+  background: #999;
+  color: #fff;
+  font-weight: normal;
+  font-size: 12px;
+  text-shadow: none;
+}
+
+.table th.sortable {
+  cursor: pointer;
+}
+
+.table th.sortable i {
+  margin-top: -1px;
+}
+
+.tabbale-wrap .tabs-left {
+  width: 10%;
+}
+
+.tabbale-wrap .tabs-left .nav {
+  width: 100%;
+  margin-right: 0;
+  position: relative;
+  z-index:999;
+  top: 50px;
+}
+
+.tabbale-wrap .tabs-left .nav li {
+  text-align: right;
+  width: 100%;
+}
+
+.tabbale-wrap .tabbable-content {
+  width: 89.8%;
+  border: 1px solid #ddd;
+}
+
+.tabbale-wrap .tabbable-content .userControls {
+  position: fixed;
+  left: 50%;
+  bottom: 15px;
+  margin: 0;
+}
+
+.tabbale-wrap .tabbable-content .userControls a {
+  margin: 0 !important;
+} 
+
+.tabbale-wrap .tabbable-content .tab-content {
+  padding: 20px;
+  min-height: 300px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.Y {
+	color:#468847;
+}
+
+.N {
+	color:#b94a48;
+}
+
+
+/* @group Layout */
+/* Head */
+.headerWrap {
+  background: #0c75c8;
+}
+
+.headerWrap .header {
+  margin: 20px;
+}
+
+.headerWrap .header a.logo {
+  display: block;
+  max-width:80%;
+}
+
+.headerWrap .header .userControls {
+  font-size: 12px;
+  color: #fff;
+}
+
+.headerWrap .header .userControls a {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.headerWrap .header .userControls .btn {
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-top: -3px;
+}
+
+/* Body */
+body > div {
+  min-width: 960px;
+}
+.contentWrap {
+  background: #fff;
+  padding-bottom: 65px;
+}
+
+#landingTable .lastFile, 
+#landingTable .lastFile {
+  text-align: left;
+}
+
+#landingTable .lastFile .viewAll{
+  float: right;
+}
+
+#landingTable td.status a {
+  text-transform: uppercase;
+  color: #468847;
+}
+
+.custom-cursor {
+	cursor:pointer;
+}
+
+/* Login Page*/
+.forgotPass {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.loginWrap img {
+  width: 140px;
+  margin: 50px auto 30px;
+  display: block;
+}
+.login {
+  width: 500px;
+  background: #eee;
+  padding: 50px 0;
+  margin: 0px auto !important;
+  position: relative;
+}
+
+.inputWrap input[type=text] {
+  width: 300px;
+  margin: 0 auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.inputWrap input[type=password] {
+  width: 300px;
+  margin: 0 auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.inputWrap label.checkbox {
+  width: 210px;
+  margin: 0 auto;
+}
+
+.inputWrap .userControls {
+  text-align: center;
+}
+
+.inputWrap .userControls .loginBtn {
+  width: 90px;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Main Page */
+.mainWrap {
+  margin: 20px;
+}
+
+/* User Page*/
+.userFeed h2 {
+  clear: both;
+}
+
+.contactInfoWrap {
+  padding-bottom: 10px;
+}
+
+.contactInfoWrap .profileImage {
+  width: 220px;
+}
+
+
+.contactInfoWrap .profileImage {
+  width: 220px;
+}
+
+
+/* Feed */
+#feedContent {
+  overflow: hidden;
+  border: 0;
+}
+#feedContent .feedDetailRow {
+  overflow: hidden;
+  border: 0;
+}
+
+.highlighted {
+  background-color: #F7FC91!important;
+}
+
+.noBackground {
+	background:none!important;
+}
+
+#feedContent .feedDetailRow:nth-of-type(odd) {
+  background: #F9F9F9;
+}
+
+#feedContent .feedDetailColLeft .feedDetailRow .detailLeft,
+#feedContent .feedDetailColLeft .feedDetailRow .detailRight {
+  width: 50%;
+  float: left; 
+}
+#feedContent .feedDetailColRight .feedDetailRow .detailLeft,
+#feedContent .feedDetailColRight .feedDetailRow .detailRight {
+  width: 50%;
+  float: left;
+}
+
+#feedContent .feedDetailRow {
+  margin: 10px 0;
+}
+
+#feedContent .feedDetailRow .detailRight {
+  text-align: right;
+  font-weight: bold;
+}
+
+#feedContent .userControls {
+  margin: 20px 0;
+  clear: both;
+}
+
+#feedContent .userControls .editBtn {
+  margin: 50px 0;
+}
+
+.cancelBtn {
+  margin-bottom:5px;
+  float:right;
+}
+
+div.page-header {
+	margin-bottom:10px!important;
+}
+
+/* Comments */
+#commentForm .commentBtn .btn {
+  margin-right: 70px;
+  margin-top: 40px;
+  float: right;
+}
+
+#commentForm .textareaWrap textarea {
+  width: 98.5%;
+}
+
+/* Query Page */
+.ruleWrapper .userControls {
+  text-align: center;
+}
+
+/* Monitoring */
+#curTransfersTable th,
+#averagesTable th {
+  text-align: left;
+  background: transparent;
+  color: #000;
+  font-weight: bold;
+}
+
+#curTransfersTable td,
+#averagesTable td {
+  border: 0;
+  text-align: left;
+}
+
+#curTransfersTable th.text-center,
+#averagesTable th.text-center,
+#curTransfersTable td.text-center,
+#averagesTable td.text-center {
+  text-align: center;
+}
+
+.graphs .left, 
+.graphs .right {
+  width: 50%;
+  float: left;
+}
+
+.graphs {
+	width: 70%;
+	margin:0 auto;
+	padding-top:20px;
+	float:left;
+}
+
+/*Chart Style*/
+.graph-title {
+	width:70%;
+}
+
+#chart_container {
+  position: relative;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#chart {
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
+#y_axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+}
+
+#chart_container1 {
+  position: relative;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#chart1 {
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
+#y_axis1 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+}
+
+#chart_container2 {
+  position: relative;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#chart2 {
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: -5px;
+}
+
+#y_axis2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+}
+
+#legend {
+  width:70%;
+  background:none;
+  color:black;
+  display: inline-block;
+  vertical-align: top;
+  margin: -30px 0 20px 30px;
+}
+
+#legend.rickshaw_legend ul li.line {
+	display:inline-block;
+}
+
+#x_axis {
+	position: relative;
+	left: 40px;
+	height: 40px;
+}
+
+.custom-x-axis {
+	width:23%;
+	font-size:18px;
+	display: inline-block;
+	padding:30px 0 20px 0;
+	margin-bottom:30px;
+	margin-left:60px;
+	text-align:center;
+}
+
+.axis-label {
+	list-style-type: none;
+	transform: rotate(270deg);
+	transform-origin: center top 0;
+	float:left;
+	padding-right:33px;
+}
+
+.graph-stats {
+	width:30%;
+	display:inline-block;
+	padding-top:20px;
+}
+
+.fill {
+	height:100%;
+}
+
+.dropdown {
+	font-size:21px;
+	margin-left:40px;
+	margin-right:5px;
+	display:inline-block;
+	vertical-align:center;
+}
+
+/* Transfer Page */
+.transfer-dropdown {
+	font-size:21px;
+	display:inline-block;
+	vertical-align:center;
+	margin-left:100px;
+}
+
+.transfer-summary {
+	font-size:18px;
+}
+
+.quarter-column {
+	width:24%;
+	display:inline-block;
+}
+
+/* Footer */
+/* @end */
+
+/* @group Default Headings */
+h2 span.badge {
+  vertical-align: middle !important;
+}
+/* @end */
+
+/* @group Default Lists */
+/* Make default ul and ol styles to match p styles */
+/* @end */
+
+/* @group Nav */
+.navbar {
+  width: 100%;
+  background: #2d2d2d !important;
+  border: 0;
+  margin: 0;
+}
+
+.navbar .navbar-inner {
+  border-radius:0;
+  background: #2d2d2d !important;
+  border: 0;
+}
+
+.navbar .navbar-inner .nav a:link,
+.navbar .navbar-inner .nav a:visited {
+  color: #bbb !important;
+  text-shadow: none;
+}
+
+.navbar .navbar-inner .nav li.active a:link,
+.navbar .navbar-inner .nav li.active a:visited {
+  color: #555 !important;
+}
+
+.navbar .navbar-inner .nav a:hover,
+.navbar .navbar-inner .nav a:active {
+  color: #fff !important;
+}
+/* @end */
+
+/* @group Forms */
+/* @end */
+
+/* @group Default Links - link visited hover active */
+a:link, a:visited {
+  
+}
+a:hover, a:active {
+  
+}
+/* @end */
+
+/* @group Media Queries */
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+/* @end */
+
+/* @group Non-Semantic Helper Classes */
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
+.ir br { display: none; }
+.hidden { display: none !important; visibility: hidden; }
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+.invisible { visibility: hidden; }
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+.clear { clear: both; }
+/* @end */
+
+/* @group Print Styles */
+@media print {
+  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+/* @end */

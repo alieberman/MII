@@ -1,0 +1,59 @@
+<div class="contentWrap row-fluid">
+  <div class="mainWrap">
+	<ol class="breadcrumb">
+	  <li><a href="index.html#/">Home</a></li>
+	  <li class="active">/ All Changes</li>
+	 </ol>
+	 <div class="page-header">
+       <h2>All Changes <span class="badge badge-inverse">{{numberOfChanges}}</span></h2>
+     </div>
+	   <p>Last Change Datetime: {{eventList[lastEvent].CREATED_AT | date:'medium'}}</p>
+	   <p>Last Change Made By: <span><a href="index.html#/users/{{eventList[lastEvent].USER_NAME}}">{{eventList[lastEvent].USER_NAME}}</a></span>
+		<span class="pull-right dropdown"><b>View:  </b> <select ng-model="filterChanges" ng-change="filterDate()">
+			<option>All</option>
+			<option>One Day</option>
+			<option>One Month</option>
+			<option>One Year</option>
+			</select>
+		</span></p>
+    <div class="userFeed clearfix">
+      <!--<div class="pull-right">
+        <button class="btn">Export All</button>
+      </div>-->
+      <table id="changeLogTable" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th class="CREATED_AT sortable">Date<i class="icon-chevron-down icon-white" ng-click="sort('CREATED_AT')"></i></th>
+			<th class="USER_NAME sortable">Change By<i class="icon-chevron-down icon-white" ng-click="sort('USER_NAME')"></i></th>
+			<th class="DATA.INTERFACE_NAME sortable">Interface Name<i class="icon-chevron-down icon-white" ng-click="sort('DATA.INTERFACE_NAME')"></i></th>
+			<th class="ISTRATEGY sortable">IStrategy<i class="icon-chevron-down icon-white" ng-click="sort('DATA.ISTRATEGY')"></i></th>
+			<th class="MESSAGE_TYPE_ sortable">Message Type<i class="icon-chevron-down icon-white" ng-click="sort('DATA.MESSAGE_TYPE_')"></i></th>
+            <th class="sortable">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="event in eventList | orderBy:sortOrder">
+            <td>
+              {{event.CREATED_AT | date:'medium'}}
+            </td>
+			<td>
+              <a href="index.html#/users/{{event.USER_NAME}}">{{event.USER_NAME}}</a>
+            </td>
+			<td>
+              {{event.DATA.INTERFACE_NAME}}
+            </td>
+			<td>
+              {{event.DATA.ISTRATEGY}}
+            </td>
+			<td>
+              {{event.DATA.MESSAGE_TYPE_}}
+            </td>
+            <td><!--{{eventData.indexOf(user)}}-->
+              <a href="index.html#/changes/changeDetail/{{myIndexOf(event,eventData)}}">Click for full description</a>
+            </td>          
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

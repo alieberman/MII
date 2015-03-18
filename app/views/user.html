@@ -1,0 +1,53 @@
+
+    <div class="contentWrap row-fluid">
+      <div class="mainWrap">
+		<ol class="breadcrumb">
+		  <li><a href="index.html#/">Home</a></li>
+		  <li class="active">/ User Change Log</li>
+		 </ol>
+		<div class="page-header">
+          <h1>User: {{params.userId}}</h1>
+		  <p class="lead">Last Change Datetime: {{eventData[numberOfChanges - 1].CREATED_AT | date:'medium'}}<a href="index.html#/changes" class="btn exportbtn pull-right"><b>View All Changes</b></a></p>
+          <!--<p class="lead">Contact Information<a href="index.html#/changes" class="btn exportbtn pull-right"><b>See All Changes</b></a></p>
+          <p><strong>Contact Group: </strong>N/A</p>
+          <p><strong>Contact Email: </strong>N/A</p>
+          <p><strong>Contact Phone: </strong>N/A</p>-->
+        </div>
+        <div class="userFeed clearfix">
+          <h2 class="text-center">{{params.userId}}'s Feed <span class="badge badge-inverse">{{numberOfChanges}}</span></h2>
+          <!--<div class="pull-right">
+            <button class="btn">Export All</button>
+          </div>-->
+          <table id="changeLogTable" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="CREATED_AT sortable">Date<i class="icon-chevron-down icon-white" ng-click="sort('CREATED_AT')"></i></th>
+				<th class="DATA.INTERFACE_NAME sortable">Interface Name<i class="icon-chevron-down icon-white" ng-click="sort('DATA.INTERFACE_NAME')"></i></th>
+				<th class="ISTRATEGY sortable">IStrategy<i class="icon-chevron-down icon-white" ng-click="sort('DATA.ISTRATEGY')"></i></th>
+				<th class="MESSAGE_TYPE_ sortable">Message Type<i class="icon-chevron-down icon-white" ng-click="sort('DATA.MESSAGE_TYPE_')"></i></th>
+                <th class="sortable">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in eventData | orderBy:sortOrder">
+                <td>
+                  {{user.CREATED_AT | date:'medium'}}
+                </td>
+				<td>
+                  {{user.DATA.INTERFACE_NAME}}
+                </td>
+				<td>
+                  {{user.DATA.ISTRATEGY}}
+                </td>
+				<td>
+                  {{user.DATA.MESSAGE_TYPE_}}
+                </td>
+                <td><!--{{eventData.indexOf(user)}}-->
+                  <a href="index.html#/users/{{params.userId}}/changeDetail/{{myIndexOf(user,singleEvent)}}">Click for full description</a>
+                </td>          
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>

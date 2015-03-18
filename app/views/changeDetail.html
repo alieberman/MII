@@ -1,0 +1,41 @@
+
+    <div class="contentWrap row-fluid">
+      <div class="mainWrap">
+		<ol class="breadcrumb">
+		  <li><a href="index.html#/">Home</a></li>
+		  <li>/&nbsp<a href="index.html#/feeds/{{params.id}}">Feed Details</a></li>
+		  <li>/&nbsp<a href="index.html#/changeLog/{{params.id}}">Change Log</a></li>
+		  <li class="active">/ Change Details</li>
+		 </ol>
+        <div class="page-header">
+          <h1>Interface:{{singleEvent[newIndex].DATA.INTERFACE_NAME}} IStrategy:{{singleEvent[newIndex].DATA.ISTRATEGY}}</h1>
+        </div>
+        <p>Change Datetime: <span>{{singleEvent[newIndex].CREATED_AT | date:'medium'}}</span></p>
+        <p>Change Made By: <span><a href="index.html#/users/{{singleEvent[newIndex].USER_NAME}}">{{singleEvent[newIndex].USER_NAME}}</a></span></p>
+        <a class="btn btn-inverse" href="index.html#/changeLog/{{params.id}}"><i class="icon-arrow-left icon-white"></i> Back to full change log</a>
+        <hr />
+        <h2>Change Details</h2>
+         <table id="changeLogTable" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Feed Attribute Changed</th>
+                <th>Old Value</th>
+                <th>New Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="attr in differences">
+                  <td>
+                    {{attr.attribute}}
+                  </td>
+                  <td>
+                    {{attr.oldValue}}
+                  </td>
+                  <td>
+                    {{attr.newValue}}
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>

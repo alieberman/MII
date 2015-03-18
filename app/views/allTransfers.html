@@ -1,0 +1,69 @@
+<div class="contentWrap row-fluid">
+  <div class="mainWrap">
+	 <div class="page-header transfer-summary">
+			<div class="quarter-column">
+			Transfer Summary:
+			</div>
+			<div class="quarter-column">
+       		All Transfers <span class="badge badge-inverse">{{dailyTransferNumber}}</span>
+			</div>
+			<div class="quarter-column">
+	   		Successful Transfers <span class="badge badge-inverse">{{dailySuccessTransferNumber}}</span>
+			</div>
+			<div class="quarter-column">
+	   		Failed Transfers <span class="badge badge-inverse">{{dailyFailedTransferNumber}}</span>
+			</div>
+     </div>
+	 <form class="form-search">
+       <div class="input-append">
+         <input type="text" placeholder="Search Transfers" class="search-query" ng-model="transferQuery">
+         <button type="submit" class="btn">Search</button>
+       </div>
+			<span class="transfer-dropdown">View: 
+				<select ng-model="filterTransferList" ng-change="filterTransfers()">
+					<option>All</option>
+					<option>Successful</option>
+					<option>Failed</option>
+					<option>Inbound</option>
+					<option>Outbound</option>
+				</select>
+			</span>
+     </form>
+    <div class="userFeed clearfix">
+      <table id="changeLogTable" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th class="EVENTTIMESTAMP sortable">Date <i class="icon-chevron-down icon-white" ng-click="sort('EVENTTIMESTAMP')"></i></th>
+			<th class="ISTRAT sortable">IStrategy <i class="icon-chevron-down icon-white" ng-click="sort('ISTRAT')"></i></th>
+			<th class="ORIGINALFILENAME sortable">Filename <i class="icon-chevron-down icon-white" ng-click="sort('ORIGINALFILENAME')"></i></th>
+			<th class="FILESIZE sortable">File Size <i class="icon-chevron-down icon-white" ng-click="sort('FILESIZE')"></i></th>
+			<th class="DIRECTION sortable">Direction <i class="icon-chevron-down icon-white" ng-click="sort('DIRECTION')"></i></th>
+			<th class="SUCCESS sortable">Success/Failed <i class="icon-chevron-down icon-white" ng-click="sort('SUCCESS')"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="transfer in transferList | filter:transferQuery | orderBy:sortOrder">
+            <td>
+              {{transfer.EVENTTIMESTAMP | date:'medium'}}
+            </td>
+			<td>
+              {{transfer.ISTRAT}}
+            </td>
+			<td>
+              {{transfer.ORIGINALFILENAME}}
+            </td>
+			<td>
+              {{transfer.FILESIZE}}
+            </td>
+			<td>
+              {{transfer.DIRECTION}}
+            </td>
+            <td>
+              {{transfer.SUCCESS}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

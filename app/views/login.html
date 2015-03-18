@@ -1,0 +1,29 @@
+
+    <div class="loginWrap row-fluid">
+	  <div class="span12">
+	    <img class="logo" src="img/disney-logo-large.png" alt="Disney" />
+	    <form name="loginForm" class="login" novalidate>
+	      <h3 class="text-center">Log in to</h3>
+	      <h2 class="text-center">MFT Monitoring</h2>
+	      <div class="inputWrap row-fluid">
+				<div class="alert alert-error" ng-show="loginAttempt && loginForm.$pristine && invalidLogin">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong><center>{{loginError}}</center></strong> 
+		        </div>
+				<div class="alert alert-error" ng-show="loginForm.$error.required && loginAttempt && loginForm.$pristine">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Email/Password Cannot Be Blank!</strong> 
+		        </div>
+	          <input type="text" name="email" ng-model="user.email" placeholder="Email" required>
+	          <input type="password" name="password" ng-model="user.password" placeholder="Password" required>
+	          <label class="checkbox">
+	            <input type="checkbox" name="rememberMe" ng-model="user.rememberMe"> Remember Me
+	          </label>
+	          <div class="userControls">
+	            <button class="loginBtn btn btn-primary btn-large" ng-click="login()">Log In</button>
+	          </div>
+	          <a class="forgotPass" href="#" ng-click="do(); $event.preventDefault()" class="pull-right">Forgot Password?</a>
+	      </div>
+	    </form>
+	  </div>
+	</div>

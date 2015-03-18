@@ -1,0 +1,86 @@
+
+    <div class="contentWrap row-fluid">
+      <div class="mainWrap clearfix">
+		 <ol class="breadcrumb">
+		  <li><a href="index.html#/">Home</a></li>
+		  <li>/&nbsp<a href="index.html#/feeds/{{params.id}}">Feed Details</a></li>
+		  <li class="active">/ Comments</li>
+		 </ol>
+        <div class="page-header" ng-controller="FeedShowCtrl">
+          <h1>Interface:{{singleFeed.INTERFACE_NAME}} IStrategy:{{singleFeed.ISTRATEGY}}</h1>
+          <p class="lead">Active (Y/N)?: <span class="{{singleFeed.IS_ACTIVE}}">{{singleFeed.IS_ACTIVE}}</span></p>
+        </div>
+        <div class="tabbale-wrap clearfix">
+          <div class="tabbable tabs-left pull-left">
+            <ul id="inventorySubnavTab" class="nav nav-tabs">
+				<li><a href="index.html#/feeds/{{params.id}}">Feed Details</a></li>
+                <li><a href="index.html#/transfers/{{params.id}}">Transfers</a></li>
+                <li class="active"><a href="index.html#/comments/{{params.id}}">Comments</a></li>
+                <li><a href="index.html#/changeLog/{{params.id}}">Change Log</a></li>
+            </ul>
+          </div>
+          <div class="tabbable-content pull-left">
+            <div id="transferContent" class="tab-content">
+				<!--Begin Success and Failure Messages-->
+				<div ng-show="postCommentSuccess && commentForm.$pristine && !commentForm.name.$error.required" class="alert alert-success">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Comment Posted!</strong> 
+		        </div>
+				<div ng-show="postCommentFailure && commentForm.$pristine" class="alert alert-error">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Error Posting Comment. Please Try Again.</strong> 
+		        </div>
+				<div ng-show="commentForm.name.$error.required && submitted && commentForm.$pristine" class="alert alert-error">
+		          <button type="button" class="close" data-dismiss="alert">&times;</button>
+		          <strong>Comment Cannot Be Blank!</strong> 
+		        </div>
+				<div ng-show="commentForm.name.$error.maxlength" class="alert alert-error">
+	          		<strong>Maximum 150 Characters.</strong> 
+	        	</div>
+				<!--/Success and Failure Messages-->
+              <div id="commentsContent">
+                <div id="commentForm" class="clearfix" ng-show="user.email != 'Guest'">
+                  <div class="commentBtn span4">
+                    <button class="btn btn-info btn-large" ng-click="save()">Comment</button>
+                  </div>
+                  <div class="textareaWrap span8">
+					<form name="commentForm" novalidate>
+                    <textarea name="name" type="text" rows="5" class="" ng-model="commentData.COMMENT_FEED" ng-maxlength="150" 
+					placeholder="Insert Comment Here" required>	
+                    </textarea>
+					</form>
+                  </div>  
+                </div> <!-- /commentForm -->
+                <hr />
+			<div ng-repeat="comment in commentList | orderBy:'-CREATED_AT'">
+				<div class="commentWrap clearfix">
+					<div class="commentMeta text-right span4">
+						<p><strong>{{comment.CURRENTUSER}}</strong></p>
+						<p>{{comment.CREATED_AT | date:'medium'}} </p>
+					</div>
+					<div class="comment span8">
+						<p>{{comment.COMMENT_FEED}}</p>
+					</div>
+				</div><!-- /commentWrap clearfix -->
+				<hr/>
+			</div><!-- /ng-repeat-->
+			<!--Show Old Comments From Spreadsheet-->
+			<div ng-controller="FeedShowCtrl" ng-show="singleFeed.COMMENTS.length > 0">
+				<div class="commentWrap clearfix">
+					<div class="commentMeta text-right span4">
+						<p><strong>Unknown</strong></p>
+						<p>Unknown</p>
+					</div>
+					<div class="comment span8">
+						<p>{{singleFeed.COMMENTS}}</p>
+					</div>
+				</div><!-- /commentWrap clearfix -->
+				<hr/>
+			</div>
+				
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

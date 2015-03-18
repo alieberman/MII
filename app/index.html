@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", charset="utf-8">
+    <title>Middleware Interface Inventory</title>
+    <meta name="description" content="">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+	<link  rel="stylesheet" href="styles/style.css" media="screen">
+	<link rel="stylesheet" href="bower_components/rickshaw/rickshaw.min.css" />
+    <!-- endbuild -->
+  </head>
+  <body ng-app="mftApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+	  <div ng-controller="UserIndexCtrl">
+		<div class="headerWrap row-fluid">
+	      <div class="header clearfix">
+	          <div class="userControls pull-right">
+	            Logged in as 
+	 			<a href="index.html#/users/{{user.email}}">{{user.email}}</a>
+				<a class="btn btn-inverse btn-mini" ng-click="logout()">Logout</a>
+	          </div>
+	          <a class="logo" href="index.html#/"><img src="images/disney-logo-large.png" alt="Disney" /></a>
+			</div>
+	      </div>
+	    </div>
+	    <div class="navbar" ng-controller="UserIndexCtrl">
+	      <div class="navbar-inner">
+	        <ul class="nav pull-right">
+	          <li class="{{activeInterfaceClass}}"><a ng-click="activate('main')" href="index.html#/">Interface Inventory </a></li>
+	          <!--<li><a href="index.html#/alerts">Alerts and Warnings</a></li>
+	          <li><a href="index.html#/query">Query Config Admin</a></li>-->
+	          <li class="{{activeMonitoringInboundClass}}"><a ng-click="activate('monitoringInbound')" href="index.html#/monitoringInbounds">Monitoring Inbounds</a></li>
+			  <li class="{{activeMonitoringOutboundClass}}"><a ng-click="activate('monitoringOutbound')" href="index.html#/monitoringOutbounds">Monitoring Outbounds</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  <!--Load Partial Views-->
+	  <div ng-view></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+		<script src="bower_components/rickshaw/vendor/d3.min.js"></script>
+	    <script src="bower_components/rickshaw/vendor/d3.layout.min.js"></script>
+	    <script src="bower_components/rickshaw/vendor/d3.v3.js"></script>
+	    <script src="bower_components/rickshaw/rickshaw.js"></script>
+        <script src="scripts/app.js"></script>
+		<script src="scripts/ui-bootstrap-custom-tpls-0.10.0.js"></script>
+	    <script src="scripts/services/UserSession.js"></script>
+	    <script src="scripts/services/EncodeAuthorizationService.js"></script>
+	    <script src="scripts/services/UserCredentialService.js"></script>
+	    <script src="scripts/services/UserIndexService.js"></script>
+	    <script src="scripts/services/FeedIndexService.js"></script>
+	    <script src="scripts/services/FeedExportService.js"></script>
+	    <script src="scripts/services/SingleFeedService.js"></script>
+	    <script src="scripts/services/CommentIndexService.js"></script>
+	    <script src="scripts/services/EventService.js"></script>
+	    <script src="scripts/services/SingleEventService.js"></script>
+	    <script src="scripts/services/SingleEventByUserService.js"></script>
+	    <script src="scripts/services/TransferService.js"></script>
+	    <script src="scripts/services/TransferByIstratService.js"></script>
+	    <script src="scripts/controllers/FeedIndexCtrl.js"></script>
+	    <script src="scripts/controllers/FeedShowCtrl.js"></script>
+	    <script src="scripts/controllers/FeedEditCtrl.js"></script>
+	    <script src="scripts/controllers/FeedNewCtrl.js"></script>
+	    <script src="scripts/controllers/UserIndexCtrl.js"></script>
+	    <script src="scripts/controllers/CommentIndexCtrl.js"></script>
+	    <script src="scripts/controllers/EventIndexCtrl.js"></script>
+	    <script src="scripts/controllers/EventIndexCompareCtrl.js"></script>
+	    <script src="scripts/controllers/EventShowCtrl.js"></script>
+	    <script src="scripts/controllers/EventCompareCtrl.js"></script>
+	    <script src="scripts/controllers/UserEventShowCtrl.js"></script>
+	    <script src="scripts/controllers/UserEventCompareCtrl.js"></script>
+	    <script src="scripts/controllers/TransferIndexCtrl.js"></script>
+	    <script src="scripts/controllers/TransferShowCtrl.js"></script>
+		<script src="scripts/controllers/TransferIndexInboundCtrl.js"></script>
+		<script src="scripts/controllers/TransferIndexOutboundCtrl.js"></script>
+	    <script src="scripts/filters.js"></script>
+	    <script src="scripts/directives.js"></script>
+	    <script src="scripts/ng-infinite-scroll.js"></script>
+	    <script src="scripts/csv.js"></script>
+        
+        <!-- endbuild -->
+</body>
+</html>
